@@ -15339,7 +15339,7 @@ var _Sources = (() => {
     const title = $3("span.detail-info-right-title-font", section).text().trim();
     const rating = $3("span.item-score", section).text().trim().replace(",", ".");
     const author = $3("p.detail-info-right-say a", section).text().trim();
-    const image = $3(".detail-info-cover-img", $3(".detail-info-cover")).attr("src") ?? "";
+    const image = ($3(".detail-info-cover-img", $3(".detail-info-cover")).attr("src") ?? "").replace(/^(https?:)?\/\//, "https://");
     const description = $3("p.fullcontent").text().trim();
     const arrayTags = [];
     for (const tag of $3("a", ".detail-info-right-tag-list").toArray()) {
@@ -15511,7 +15511,7 @@ var _Sources = (() => {
       const mangaArray = [];
       for (const manga of $3("li", section.selector).toArray()) {
         const id = $3("a", manga).attr("href")?.split("/manga/")[1]?.replace(/\//g, "");
-        const image = $3("img", manga).first().attr("src") ?? "";
+        const image = ($3("img", manga).first().attr("src") ?? "").replace(/^(https?:)?\/\//, "https://");
         const title = $3("a", manga).first().attr("title")?.trim() ?? "";
         const subtitle = $3("p.manga-list-1-item-subtitle", manga).text().trim();
         if (!id || !title || collectedIds.includes(id)) continue;
@@ -15535,7 +15535,7 @@ var _Sources = (() => {
     const latestManga = [];
     for (const manga of $3("li", "div.manga-list-4 ").toArray()) {
       const id = $3("a", manga).attr("href")?.split("/manga/")[1]?.replace(/\//g, "");
-      const image = $3("img", manga).first().attr("src") ?? "";
+      const image = ($3("img", manga).first().attr("src") ?? "").replace(/^(https?:)?\/\//, "https://");
       const title = $3("a", manga).attr("title")?.trim() ?? "";
       const subtitle = $3("ul.manga-list-4-item-part > li", manga).first().text().trim();
       if (!id || !title || collectedIds.includes(id)) continue;
@@ -15555,7 +15555,7 @@ var _Sources = (() => {
     const collectedIds = [];
     for (const manga of $3("ul.manga-list-4-list > li").toArray()) {
       const id = $3("a", manga).attr("href")?.split("/manga/")[1]?.replace(/\//g, "");
-      const image = $3("img", manga).first().attr("src") ?? "";
+      const image = ($3("img", manga).first().attr("src") ?? "").replace(/^(https?:)?\/\//, "https://");
       const title = $3("a", manga).attr("title")?.trim() ?? "";
       const subtitle = $3("a", $3("p.manga-list-4-item-tip", manga).get(1)).text();
       if (!id || !title || collectedIds.includes(id)) continue;
@@ -15575,7 +15575,7 @@ var _Sources = (() => {
     if (homepageSectionId === "latest_updates") {
       for (const manga of $3("ul.manga-list-4-list > li").toArray()) {
         const id = $3("a", manga).attr("href")?.split("/manga/")[1]?.replace(/\//g, "");
-        const image = $3("img", manga).first().attr("src") ?? "";
+        const image = ($3("img", manga).first().attr("src") ?? "").replace(/^(https?:)?\/\//, "https://");
         const title = $3("a", manga).attr("title")?.trim() ?? "";
         const subtitle = $3("ul.manga-list-4-item-part > li", manga).first().text().trim();
         if (!id || !title || collectedIds.includes(id)) continue;
@@ -15591,7 +15591,7 @@ var _Sources = (() => {
     }
     for (const manga of $3("li", $3.html()).toArray()) {
       const id = $3("a", manga).attr("href")?.split("/manga/")[1]?.replace(/\//g, "");
-      const image = $3("img", manga).first().attr("src") ?? "";
+      const image = ($3("img", manga).first().attr("src") ?? "").replace(/^(https?:)?\/\//, "https://");
       const title = $3("img", manga).first().attr("alt")?.trim() ?? "";
       const subtitle = $3("p.manga-list-1-item-subtitle", manga).text().trim();
       if (!id || !title || collectedIds.includes(id)) continue;
@@ -15693,7 +15693,7 @@ var _Sources = (() => {
   // src/MangaFox/MangaFox.ts
   var FF_DOMAIN = "https://fanfox.net";
   var MangaFoxInfo = {
-    version: "3.0.8",
+    version: "3.0.9",
     name: "MangaFox",
     icon: "icon.png",
     author: "Netsky",
