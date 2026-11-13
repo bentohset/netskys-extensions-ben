@@ -15424,7 +15424,8 @@ var _Sources = (() => {
       const chapterIdStartLoc = $.html().indexOf("chapterid");
       const numericChapterId = $.html().substring(chapterIdStartLoc + 11, $.html().indexOf(";", chapterIdStartLoc)).trim();
       const pagesLinksElements = $("a", $(".pager-list-left > span").first());
-      const pagesNumber = Number($(pagesLinksElements[pagesLinksElements.length - 2])?.attr("data-page"));
+      const imageCountMatch = $.html().match(/var\s+imagecount\s*=\s*(\d+)/);
+      const pagesNumber = imageCountMatch ? Number(imageCountMatch[1]) : Number($(pagesLinksElements[pagesLinksElements.length - 2])?.attr("data-page"));
       const pageBase = url.substring(0, url.lastIndexOf("/"));
       for (let i = 1; i <= pagesNumber; i++) {
         let responseString = "";
@@ -15690,7 +15691,7 @@ var _Sources = (() => {
   // src/MangaHere/MangaHere.ts
   var MH_DOMAIN = "https://www.mangahere.cc";
   var MangaHereInfo = {
-    version: "3.0.6",
+    version: "3.0.7",
     name: "MangaHere",
     icon: "icon.png",
     author: "Netsky",
